@@ -1,18 +1,13 @@
-package com.williamtrindade.leftRotation;
+// My Solution
+package com.williamtrindade.arraysLeftRotation;
 
 import java.io.*;
-import java.math.*;
-import java.security.*;
-import java.text.*;
 import java.util.*;
-import java.util.concurrent.*;
-import java.util.function.*;
-import java.util.regex.*;
 import java.util.stream.*;
 import static java.util.stream.Collectors.joining;
 import static java.util.stream.Collectors.toList;
 
-class Result {
+class ResultA {
 
     /*
      * Complete the 'rotLeft' function below.
@@ -24,13 +19,31 @@ class Result {
      */
 
     public static List<Integer> rotLeft(List<Integer> a, int d) {
-        // Write your code here
-        return new ArrayList<>();
+        // iterating one time the arary
+        // creating an aux array
+        // O of n Solution in time and space complexity
+
+        int arraySize = a.size();
+        List<Integer> aux = new ArrayList<>(Collections.nCopies(arraySize, null));
+
+        for (int i = 0; i < arraySize; i++) {
+            int newPosition = ResultA.rotate(
+                    i,
+                    d,
+                    arraySize
+            );
+            aux.set(newPosition, a.get(i));
+        }
+        return aux;
+    }
+
+    public static int rotate(int actualPosition, int rotations, int size) {
+        return (actualPosition - (rotations % size) + size) % size;
     }
 
 }
 
-public class Solution {
+public class SolutionA {
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
         // BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
@@ -45,7 +58,7 @@ public class Solution {
                 .map(Integer::parseInt)
                 .collect(toList());
 
-        List<Integer> result = Result.rotLeft(a, d);
+        List<Integer> result = ResultA.rotLeft(a, d);
 
         String res =
                 result.stream()
