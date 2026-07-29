@@ -24,9 +24,18 @@ class Result {
      */
 
     public static int designerPdfViewer(List<Integer> h, String word) {
-        // Write your code here
+        int tallestHeigth = 0;
+        int wordLength = word.length();
 
-        return 0;
+        for (int i = 0; i < wordLength; i++) {
+            char letter = word.charAt(i);
+            int index = (int) letter - 97;
+            if (h.get(index) > tallestHeigth) {
+                tallestHeigth = h.get(index);
+            }
+        }
+
+        return tallestHeigth * word.length();
     }
 
 }
