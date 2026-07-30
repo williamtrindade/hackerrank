@@ -81,10 +81,29 @@ class Result {
      */
 
     public static SinglyLinkedListNode insertNodeAtPosition(SinglyLinkedListNode llist, int data, int position) {
-        // Write your code here
-        return new SinglyLinkedListNode(1);
-    }
+        SinglyLinkedListNode newNode = new SinglyLinkedListNode(data);
 
+        // Cobre o caso da lista vazia ou inserção na cabeça (posição 0)
+        if (position == 0 || llist == null) {
+            newNode.next = llist;
+            return newNode;
+        }
+
+        SinglyLinkedListNode curr = llist;
+        int p = 1;
+
+        // O curr.next != null garante que não teremos NullPointerException
+        // caso a posição seja maior que o tamanho da lista.
+        while (position > p && curr.next != null) {
+            curr = curr.next;
+            p++;
+        }
+
+        newNode.next = curr.next;
+        curr.next = newNode;
+
+        return llist;
+    }
 }
 
 public class Solution {
