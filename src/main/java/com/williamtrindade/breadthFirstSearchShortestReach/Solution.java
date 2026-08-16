@@ -27,7 +27,7 @@ class Result {
 
     public static List<Integer> bfs(int n, int m, List<List<Integer>> edges, int s) {
         // Write your code here
-        
+        return new ArrayList<>();
     }
 
 }
